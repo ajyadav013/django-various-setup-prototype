@@ -1,0 +1,8 @@
+dj-database-url==0.4.2
+Django==1.11.3
+django-custom-user==0.7
+gunicorn==19.7.1
+pkg-resources==0.0.0
+psycopg2==2.7.1
+pytz==2017.2
+waitress==0.8.10
