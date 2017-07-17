@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Router }  from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { CookieService } from 'angular2-cookie/core';
+import { CookieService } from 'ngx-cookie';
 import { Http, Response } from '@angular/http';
-import { ContentHeaderService } from '../index';
-import { Config } from '../../config/env.config';
-import { IUser } from '../../model/index';
+import { ContentHeaderService } from '../shared/service/index';
+import { Config } from '../shared/config/env.config';
+import { IUser } from '../shared/model/index';
 
 @Injectable()
 export class AuthService {

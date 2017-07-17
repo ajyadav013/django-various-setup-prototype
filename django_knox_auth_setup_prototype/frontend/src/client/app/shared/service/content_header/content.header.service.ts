@@ -5,7 +5,7 @@
 import { Injectable } from '@angular/core';
 import { RequestOptions, URLSearchParams } from '@angular/http';
 import { Headers } from '@angular/http';
-import { CookieService } from 'angular2-cookie/core';
+import { CookieService } from 'ngx-cookie';
 
 @Injectable()
 export class ContentHeaderService {

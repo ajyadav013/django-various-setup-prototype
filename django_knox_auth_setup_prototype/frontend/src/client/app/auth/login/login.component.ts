@@ -1,7 +1,7 @@
 import { Component , OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Cookie } from 'ng2-cookies/ng2-cookies';
-import { AuthService } from '../../shared/service/index';
+import { CookieService } from 'ngx-cookie';
+import { AuthService } from '../auth.service';
 
 class Login {
     username:string;
@@ -20,13 +20,13 @@ export class LoginComponent implements OnInit {
     public credentials:Login;
 
 
-    constructor( private authService: AuthService, private router: Router) {
+    constructor( private authService: AuthService, private router: Router, private _cookieService:CookieService) {
         this.credentials = new Login();
         this.has_error = false;
     }
 
     ngOnInit() {
-        if(!!Cookie.get('token')) {
+        if(this._cookieService.get('token')) {
             this.router.navigate(['']);
         }
     }

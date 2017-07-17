@@ -145,10 +145,9 @@
     "@angular/platform-browser-dynamic": "^4.2.3",
     "@angular/router": "^4.2.3",
     "@angular/service-worker": "^1.0.0-beta.16",
-    "angular2-cookie": "^1.2.6",
     "core-js": "^2.4.1",
     "intl": "^1.2.5",
-    "ng2-cookies": "^1.0.12",
+    "ngx-cookie": "^1.0.0",
     "rxjs": "^5.4.2",
     "systemjs": "0.20.14",
     "zone.js": "0.8.12"
