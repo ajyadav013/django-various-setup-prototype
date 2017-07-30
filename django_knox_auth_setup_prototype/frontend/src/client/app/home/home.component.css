@@ -1,3 +1,4 @@
+/* Home Component styles*/
 :host {
   display: block;
   padding: 0 16px;
@@ -10,4 +11,8 @@ input {
 ul {
   list-style-type: none;
   padding: 0 0 0 8px;
+}
+
+.home-search-input {
+  width:30%;
 }
