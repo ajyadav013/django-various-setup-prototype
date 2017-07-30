@@ -14,12 +14,14 @@ export class SocialComponent {
     private socialAuthConfig = {
         'facebook':{
             'authEndpoint': Config.APIURL+'social',
-            'clientId':'852427901588841',
+            'clientId':Config.FACEBOOKCLIENTID,
             'provider':'facebook',
-            'redirectURI' : Config.REDIRECTURL+'admin'
+            'redirectURI' : Config.REDIRECTURL
         }
     };
-    constructor(public socialService:SocialService) { }
+    constructor(public socialService:SocialService) {
+        console.log('config', this.socialAuthConfig);
+    }
     facebookLogin() {
         console.log('Inside facebook login');
         this.socialService.auth('facebook',this.socialAuthConfig);

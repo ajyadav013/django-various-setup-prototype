@@ -4,4 +4,5 @@ export interface EnvConfig {
     APIURL?: string;
     ENV?: string;
     REDIRECTURL?:string;
+    FACEBOOKCLIENTID?: string;
 }

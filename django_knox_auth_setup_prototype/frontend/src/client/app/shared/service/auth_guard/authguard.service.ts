@@ -1,6 +1,7 @@
 // Authguard Service
 
 import { Injectable }  from '@angular/core';
+import { Location } from '@angular/common';
 import { Router, CanActivate } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -79,4 +80,24 @@ export class AuthGuard implements CanActivate {
     }
 
 
+}
+
+@Injectable()
+export class SocialGuard implements CanActivate {
+    private _code:string;
+    constructor(private _location:Location) {
+        let params = new URLSearchParams(this._location.path(false).split('?')[1]);
+        this._code = params.get('code');
+    }
+
+
+    canActivate():Observable<boolean> {
+        if(this._code) {
+            console.log('Inside if', this._code);
+            return Observable.of(true);
+        } else {
+            console.log('Inside else', this._code);
+            return Observable.of(true);
+        }
+    }
 }

@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { NavbarModule } from './navbar/navbar.module';
 
-import { ContentHeaderService, AuthGuard } from './service/index';
+import { ContentHeaderService, AuthGuard, SocialGuard } from './service/index';
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
  */
@@ -21,7 +21,7 @@ export class SharedModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
-        providers: [ContentHeaderService, AuthGuard]
+        providers: [ContentHeaderService, AuthGuard, SocialGuard]
     };
   }
 }
