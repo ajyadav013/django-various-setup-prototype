@@ -95,10 +95,21 @@ export class SocialGuard implements CanActivate {
 
     canActivate():Observable<boolean> {
         if(this._code) {
-            return Observable.of(this._socialService.getUserSocialDetails(this._code));
+            return this._socialService.getUserSocialDetails(this._code)
+                .map((res:Response) => this.handleSuccess(res))
+                .catch(this.logError)
         } else {
             console.log('Inside else', this._code);
             return Observable.of(true);
         }
     }
+
+    private handleSuccess(response:any) {
+        return true;
+    }
+
+    private logError(error:any) {
+        return Observable.of(false)
+    }
+
 }

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 import { ContentHeaderService } from '../shared/service/index';
+import { Config } from '../shared/config/env.config';
 
 @Injectable()
 export class SocialService {
@@ -16,15 +18,21 @@ export class SocialService {
         }
     }
 
-    public getUserSocialDetails(code:string):boolean {
+    public getUserSocialDetails(code:string):Observable<any> {
         let config = JSON.parse(localStorage.getItem('socialAuthConfig'));
         let body = {'code' : code,'clientId' : config.clientId,'redirectUri':config.redirectURI, 'provider':config.provider};
         let options = this._contentHeaderService.getOptions(null);
         return this._http.post(Config.APIURL+'social/', body, options)
-            .toPromise()
-            .then((r: Response) => {
-                return true;
-            })
+            .map((res: Response) => this.handleGetUserSocialDetails(res))
             .catch(this.handleError);
     }
+
+    private handleGetUserSocialDetails(response:any) {
+        return true;
+    }
+
+    private handleError(error:any) {
+        return Observable.of(false)
+    }
+
 }
