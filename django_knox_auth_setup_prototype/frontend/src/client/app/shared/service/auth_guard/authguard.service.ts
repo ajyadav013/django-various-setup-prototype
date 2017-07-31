@@ -11,6 +11,7 @@ import { CookieService } from 'ngx-cookie';
 import { Config } from '../..//config/env.config';
 import { IUser } from '../..//model/index';
 import { ContentHeaderService } from '../index';
+import { SocialService } from '../../../social/social.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -19,7 +20,8 @@ export class AuthGuard implements CanActivate {
     constructor(private router: Router,
                 private http:Http,
                 private _contentHeaderService:ContentHeaderService,
-                private _cookieService:CookieService) { }
+                private _cookieService:CookieService
+                ) { }
 
     // Method to check if user is logged in
     canActivate():Observable<boolean> {
@@ -85,7 +87,7 @@ export class AuthGuard implements CanActivate {
 @Injectable()
 export class SocialGuard implements CanActivate {
     private _code:string;
-    constructor(private _location:Location) {
+    constructor(private _location:Location, private _socialService:SocialService) {
         let params = new URLSearchParams(this._location.path(false).split('?')[1]);
         this._code = params.get('code');
     }
@@ -93,8 +95,7 @@ export class SocialGuard implements CanActivate {
 
     canActivate():Observable<boolean> {
         if(this._code) {
-            console.log('Inside if', this._code);
-            return Observable.of(true);
+            return Observable.of(this._socialService.getUserSocialDetails(this._code));
         } else {
             console.log('Inside else', this._code);
             return Observable.of(true);

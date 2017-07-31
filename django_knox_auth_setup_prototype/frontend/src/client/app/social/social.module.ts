@@ -1,5 +1,5 @@
 // Social Module
-import { Component, NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule }       from '@angular/common';
 import { SocialComponent } from './social.component';
 import { SocialService } from './social.service';
@@ -9,8 +9,15 @@ import { SocialService } from './social.service';
     imports :[CommonModule],
     declarations: [SocialComponent],
     exports: [SocialComponent],
-    providers:[
-        SocialService,
-    ]
+    // providers:[
+    //     SocialService,
+    // ]
 })
-export class SocialModule { }
+export class SocialModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: SocialModule,
+        providers: [SocialService]
+    };
+  }
+}

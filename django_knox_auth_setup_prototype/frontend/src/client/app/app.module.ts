@@ -15,9 +15,12 @@ import { routes } from './app.routes';
 
 @NgModule({
     imports: [BrowserModule, HttpModule,
-              CookieModule.forRoot(), RouterModule.forRoot(routes),
+              CookieModule.forRoot(),
+              RouterModule.forRoot(routes),
               SharedModule.forRoot(),
-              AuthModule, AboutModule, HomeModule, SocialModule],
+              SocialModule.forRoot(),
+              AuthModule, AboutModule,
+              HomeModule],
     declarations: [AppComponent],
     providers: [{
         provide: APP_BASE_HREF,
