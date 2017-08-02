@@ -24,6 +24,11 @@ export class SocialComponent {
     }
     facebookLogin() {
         console.log('Inside facebook login');
+        this.setSocialProvider('facebook');
         this.socialService.auth('facebook',this.socialAuthConfig);
+    }
+
+    setSocialProvider(provider:string) {
+        localStorage.setItem('socialProvider', provider);
     }
 }

@@ -20,7 +20,11 @@ export class SocialService {
 
     public getUserSocialDetails(code:string):Observable<any> {
         let config = JSON.parse(localStorage.getItem('socialAuthConfig'));
+        let socialProvider = localStorage.getItem('socialProvider');
         let body = {'code' : code,'clientId' : config.clientId,'redirectUri':config.redirectURI, 'provider':config.provider};
+        console.log('bosy', body);
+
+        console.log('body k baad config', socialProvider, config[socialProvider].clientId);
         let options = this._contentHeaderService.getOptions(null);
         return this._http.post(Config.APIURL+'social/', body, options)
             .map((res: Response) => this.handleGetUserSocialDetails(res))
@@ -32,7 +36,7 @@ export class SocialService {
     }
 
     private handleError(error:any) {
-        return Observable.of(false)
+        return Observable.of(false);
     }
 
 }

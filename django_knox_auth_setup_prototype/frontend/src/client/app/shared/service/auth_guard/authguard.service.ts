@@ -97,7 +97,7 @@ export class SocialGuard implements CanActivate {
         if(this._code) {
             return this._socialService.getUserSocialDetails(this._code)
                 .map((res:Response) => this.handleSuccess(res))
-                .catch(this.logError)
+                .catch(this.logError);
         } else {
             console.log('Inside else', this._code);
             return Observable.of(true);
@@ -109,7 +109,7 @@ export class SocialGuard implements CanActivate {
     }
 
     private logError(error:any) {
-        return Observable.of(false)
+        return Observable.of(false);
     }
 
 }

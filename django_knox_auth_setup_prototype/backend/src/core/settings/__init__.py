@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'knox',
     'authentication',
     'home',
+    'social'
 ]
 
 MIDDLEWARE = [
