@@ -99,7 +99,6 @@ export class SocialGuard implements CanActivate {
                 .map((res:Response) => this.handleSuccess(res))
                 .catch(this.logError);
         } else {
-            console.log('Inside else', this._code);
             return Observable.of(true);
         }
     }

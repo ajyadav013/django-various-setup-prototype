@@ -21,9 +21,7 @@ class FacebookSerializer(serializers.Serializer):
     def validate(self, data):
         url = 'https://graph.facebook.com/v2.10/oauth/access_token?client_id={0}&redirect_uri={1}&client_secret={2}&code={3}'.format(
             data.get('clientId'), data.get('redirectUri'), settings.FACEBOOK_APP_SECRET, data.get('code'))
-
         response = requests.get(url)
-
         try:
             access_token = response.json()['access_token']
         except:

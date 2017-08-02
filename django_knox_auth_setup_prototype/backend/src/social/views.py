@@ -25,7 +25,6 @@ class Social(APIView):
                 user_id=request.user.id, social_platform=request.data.get('provider'))
             return HttpResponse(social_user)
         except SocialUser.DoesNotExist:
-            print('request', request.data)
             if request.data.get('provider') == 'facebook':
                 serializer = FacebookSerializer(data={'clientId': request.data.get(
                     'clientId'), 'redirectUri': request.data.get('redirectUri'), 'code': request.data.get('code')})
@@ -36,4 +35,4 @@ class Social(APIView):
                 social_user = serializer.save(**{'user_id': request.user.id})
                 return HttpResponse(social_user)
             else:
-                print('Boom------------------------------')
+                return HttpResponse(False)

@@ -1,5 +1,4 @@
 // Social Component
-
 import { Component, OnInit } from '@angular/core';
 import { SocialService } from './social.service';
 import { Config } from '../shared/config/env.config';
@@ -10,7 +9,7 @@ import { Config } from '../shared/config/env.config';
     templateUrl: 'social.component.html',
     styleUrls: ['social.component.css'],
 })
-export class SocialComponent {
+export class SocialComponent implements OnInit {
     private socialAuthConfig = {
         'facebook':{
             'authEndpoint': Config.APIURL+'social',
@@ -19,13 +18,13 @@ export class SocialComponent {
             'redirectURI' : Config.REDIRECTURL
         }
     };
-    constructor(public socialService:SocialService) {
-        console.log('config', this.socialAuthConfig);
-    }
+    constructor(public socialService:SocialService) { }
+
+    ngOnInit() {}
+
     facebookLogin() {
-        console.log('Inside facebook login');
         this.setSocialProvider('facebook');
-        this.socialService.auth('facebook',this.socialAuthConfig);
+        this.socialService.auth('facebook', this.socialAuthConfig);
     }
 
     setSocialProvider(provider:string) {
