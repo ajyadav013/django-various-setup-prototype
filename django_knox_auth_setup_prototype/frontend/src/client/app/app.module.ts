@@ -19,8 +19,8 @@ import { routes } from './app.routes';
               RouterModule.forRoot(routes),
               SharedModule.forRoot(),
               SocialModule.forRoot(),
-              AuthModule, AboutModule,
-              HomeModule],
+              HomeModule.forRoot(),
+              AuthModule, AboutModule],
     declarations: [AppComponent],
     providers: [{
         provide: APP_BASE_HREF,

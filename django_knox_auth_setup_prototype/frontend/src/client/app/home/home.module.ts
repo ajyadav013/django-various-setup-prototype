@@ -1,10 +1,19 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { HomeComponent } from './home.component';
 import { SharedModule } from '../shared/shared.module';
+import { SocialResolver } from './home.service';
+
 
 @NgModule({
   imports: [SharedModule],
   declarations: [HomeComponent],
   exports: [HomeComponent],
 })
-export class HomeModule { }
+export class HomeModule {
+    static forRoot(): ModuleWithProviders {
+        return {
+            ngModule: HomeModule,
+            providers: [SocialResolver]
+        };
+    }
+}

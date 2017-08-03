@@ -36,3 +36,16 @@ class Social(APIView):
                 return HttpResponse(social_user)
             else:
                 return HttpResponse(False)
+
+
+class SocialMeView(APIView):
+    """
+    User's Social Me View
+    """
+    authentication_classes = api_settings.DEFAULT_AUTHENTICATION_CLASSES
+    permission_classes = (IsAuthenticated, )
+
+    def get(self, request):
+        serializer = SocialUserSerializer(
+            request.user.socialuser.all(), many=True)
+        return HttpResponse(serializer.data, status=200)

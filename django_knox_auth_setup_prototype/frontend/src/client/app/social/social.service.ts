@@ -28,19 +28,39 @@ export class SocialService {
             .catch(this.handleError);
     }
 
+    public socialResolve() {
+        let options = this._contentHeaderService.getOptions(null);
+        return this._http.get(Config.APIURL+'social/me', options)
+            .map((res: Response) => this.handleSocialResolve(res))
+            .catch(this.handleError);
+    }
+
+    public deleteSocialInfoLocalStorage() {
+        localStorage.removeItem('socialAuthConfig');
+        localStorage.removeItem('socialProvider');
+    }
+
+    private handleSocialResolve(response:any) {
+        let loggedInPlatforms = [];
+        console.log('length', response.json());
+        for(let i=0; i<response.length; i++) {
+            console.log('resp', i, response[i]);
+        }
+        console.log('social me response', response);
+        return true;
+    }
+
+
     private handleGetUserSocialDetails(response:any) {
-        this.deleteSocialInfoLocalStorage();
+        //this.deleteSocialInfoLocalStorage();
         return true;
     }
 
     private handleError(error:any) {
-        this.deleteSocialInfoLocalStorage();
+        //this.deleteSocialInfoLocalStorage();
         return Observable.of(false);
     }
 
-    private deleteSocialInfoLocalStorage() {
-        localStorage.removeItem('socialAuthConfig');
-        localStorage.removeItem('socialProvider');
-    }
+
 
 }
