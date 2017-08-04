@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit{
 
     ngOnInit() {
         this.loggedInPlatforms = this._route.snapshot.data['social'];
-
+        console.log('home',  this.loggedInPlatforms);
     }
 
 }

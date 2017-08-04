@@ -1,5 +1,5 @@
 // Social Component
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { SocialService } from './social.service';
 import { Config } from '../shared/config/env.config';
 
@@ -9,9 +9,10 @@ import { Config } from '../shared/config/env.config';
     templateUrl: 'social.component.html',
     styleUrls: ['social.component.css'],
 })
-export class SocialComponent implements OnInit {
-    ///@Input('loggedInPlatforms') loggedInPlatforms:Array<string>;
-    //console.log('logged in platforms in social', this.loggedInPlatforms);
+export class SocialComponent implements OnChanges{
+    @Input('loggedInPlatforms') loggedInPlatforms:Array<string>;
+
+    public facebookLoggedIn:boolean=false;
 
     private socialAuthConfig = {
         'facebook':{
@@ -23,7 +24,14 @@ export class SocialComponent implements OnInit {
     };
     constructor(public socialService:SocialService) { }
 
-    ngOnInit() {}
+    ngOnChanges() {
+        for(let index=0; index<this.loggedInPlatforms.length; index++) {
+            if(this.loggedInPlatforms[index]==='facebook') {
+                this.facebookLoggedIn = true;
+            }
+        }
+    }
+
 
     facebookLogin() {
         this.setSocialProvider('facebook');

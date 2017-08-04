@@ -90,29 +90,24 @@ export class SocialGuard implements CanActivate {
     constructor(private _location:Location, private _socialService:SocialService) {
         let params = new URLSearchParams(this._location.path(false).split('?')[1]);
         this._code = params.get('code');
-        console.log('code', this._code);
     }
 
 
     canActivate():Observable<boolean> {
         if(this._code) {
-            console.log('Inside if');
             return this._socialService.getUserSocialDetails(this._code)
                 .map((res:Response) => this.handleSuccess(res))
                 .catch(this.logError);
         } else {
-            console.log('Inside else');
             return Observable.of(true);
         }
     }
 
     private handleSuccess(response:any) {
-        console.log('Inside handlesuccess');
         return true;
     }
 
     private logError(error:any) {
-        console.log('Inside logerror');
         return Observable.of(false);
     }
 

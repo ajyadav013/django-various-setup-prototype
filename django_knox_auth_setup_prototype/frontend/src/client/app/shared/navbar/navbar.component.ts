@@ -10,9 +10,14 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['navbar.component.css'],
 })
 export class NavbarComponent {
-    @Input('loggedInPlatforms')
-    loggedInPlatforms:Array<string>;
 
-    public loggedInSocialPlatforms:Array<string> = this.loggedInPlatforms;
-    console.log('logged in platforms in navbar', this.loggedInPlatforms);
+    @Input('loggedInPlatforms')loggedInPlatforms:Array<string>;
+
+    constructor() {}
+
+    // ngOnChanges() {
+    //     console.log('logged in platforms in navbar onchanges', this.loggedInPlatforms);
+    // }
+
+
 }

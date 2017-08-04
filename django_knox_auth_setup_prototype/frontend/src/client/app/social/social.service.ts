@@ -19,7 +19,6 @@ export class SocialService {
     }
 
     public getUserSocialDetails(code:string):Observable<any> {
-        console.log('getusersocialdetails called');
         let config = JSON.parse(localStorage.getItem('socialAuthConfig'));
         let socialProvider = localStorage.getItem('socialProvider');
         let body = {'code' : code,'clientId' : config[socialProvider].clientId,'redirectUri':config[socialProvider].redirectURI, 'provider':config[socialProvider].provider};
@@ -30,7 +29,6 @@ export class SocialService {
     }
 
     public socialResolve() {
-        console.log('Inside social resolve');
         let options = this._contentHeaderService.getOptions(null);
         return this._http.get(Config.APIURL+'social/me', options)
             .map((res: Response) => this.handleSocialResolve(res))
