@@ -1,5 +1,5 @@
 // Social Component
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SocialService } from './social.service';
 import { Config } from '../shared/config/env.config';
 
@@ -10,6 +10,9 @@ import { Config } from '../shared/config/env.config';
     styleUrls: ['social.component.css'],
 })
 export class SocialComponent implements OnInit {
+    ///@Input('loggedInPlatforms') loggedInPlatforms:Array<string>;
+    //console.log('logged in platforms in social', this.loggedInPlatforms);
+
     private socialAuthConfig = {
         'facebook':{
             'authEndpoint': Config.APIURL+'social',

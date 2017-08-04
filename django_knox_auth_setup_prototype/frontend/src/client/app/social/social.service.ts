@@ -19,6 +19,7 @@ export class SocialService {
     }
 
     public getUserSocialDetails(code:string):Observable<any> {
+        console.log('getusersocialdetails called');
         let config = JSON.parse(localStorage.getItem('socialAuthConfig'));
         let socialProvider = localStorage.getItem('socialProvider');
         let body = {'code' : code,'clientId' : config[socialProvider].clientId,'redirectUri':config[socialProvider].redirectURI, 'provider':config[socialProvider].provider};
@@ -29,10 +30,11 @@ export class SocialService {
     }
 
     public socialResolve() {
+        console.log('Inside social resolve');
         let options = this._contentHeaderService.getOptions(null);
         return this._http.get(Config.APIURL+'social/me', options)
             .map((res: Response) => this.handleSocialResolve(res))
-            .catch(this.handleError);
+            .catch(this.handleSocialResolveError);
     }
 
     public deleteSocialInfoLocalStorage() {
@@ -41,26 +43,26 @@ export class SocialService {
     }
 
     private handleSocialResolve(response:any) {
-        let loggedInPlatforms = [];
-        console.log('length', response.json());
-        for(let i=0; i<response.length; i++) {
-            console.log('resp', i, response[i]);
+        let loggedInPlatforms:Array<string> = [];
+        let data = response.json();
+        for(let i=0; i<data.length; i++) {
+            loggedInPlatforms.push(data[i].social_platform)
         }
-        console.log('social me response', response);
-        return true;
+        return loggedInPlatforms;
     }
 
 
     private handleGetUserSocialDetails(response:any) {
-        //this.deleteSocialInfoLocalStorage();
+        this.deleteSocialInfoLocalStorage();
         return true;
     }
 
     private handleError(error:any) {
-        //this.deleteSocialInfoLocalStorage();
+        this.deleteSocialInfoLocalStorage();
         return Observable.of(false);
     }
 
-
-
+    private handleSocialResolveError(error:any) {
+        return Observable.of(false);
+    }
 }

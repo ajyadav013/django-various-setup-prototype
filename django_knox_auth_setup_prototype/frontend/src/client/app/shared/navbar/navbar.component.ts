@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 /**
  * This class represents the navigation bar component.
@@ -9,4 +9,10 @@ import { Component } from '@angular/core';
   templateUrl: 'navbar.component.html',
   styleUrls: ['navbar.component.css'],
 })
-export class NavbarComponent { }
+export class NavbarComponent {
+    @Input('loggedInPlatforms')
+    loggedInPlatforms:Array<string>;
+
+    public loggedInSocialPlatforms:Array<string> = this.loggedInPlatforms;
+    console.log('logged in platforms in navbar', this.loggedInPlatforms);
+}

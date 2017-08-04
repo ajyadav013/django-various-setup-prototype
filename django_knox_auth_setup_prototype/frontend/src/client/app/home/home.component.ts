@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+
 /**
  * This class represents the lazy loaded HomeComponent.
  */
@@ -12,10 +13,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HomeComponent implements OnInit{
 
+    public loggedInPlatforms:Array<string> = [];
     constructor(private _route:ActivatedRoute) {}
 
     ngOnInit() {
-        //this.contact = this.route.snapshot.data['contact'];
+        this.loggedInPlatforms = this._route.snapshot.data['social'];
 
     }
 

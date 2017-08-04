@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from rest_framework.settings import api_settings
 from rest_framework.permissions import (IsAuthenticated, )
 from rest_framework.views import APIView
+from rest_framework.response import Response  
 
 from .models import SocialUser
 from .serializers import (
@@ -48,4 +49,4 @@ class SocialMeView(APIView):
     def get(self, request):
         serializer = SocialUserSerializer(
             request.user.socialuser.all(), many=True)
-        return HttpResponse(serializer.data, status=200)
+        return Response(serializer.data, status=200)
