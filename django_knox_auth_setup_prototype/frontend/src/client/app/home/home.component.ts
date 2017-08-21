@@ -11,14 +11,13 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: 'home.component.html',
   styleUrls: ['home.component.css'],
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit {
 
     public loggedInPlatforms:Array<string> = [];
     constructor(private _route:ActivatedRoute) {}
 
     ngOnInit() {
         this.loggedInPlatforms = this._route.snapshot.data['social'];
-        console.log('home',  this.loggedInPlatforms);
     }
 
 }
