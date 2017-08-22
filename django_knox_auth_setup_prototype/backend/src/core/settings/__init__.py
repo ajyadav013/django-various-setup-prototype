@@ -19,6 +19,7 @@ try:
 except ImportError:
     from .production import (DEBUG, SECRET_KEY, FACEBOOK_APP_SECRET, DATABASES, ALLOWED_HOSTS)
 
+from core.settings.celery import app as celery_app
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -132,6 +133,14 @@ CORS_ALLOW_HEADERS = (
     'authorization',
     'x-csrftoken'
 )
+
+# CELERY STUFF
+BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Africa/Nairobi'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
